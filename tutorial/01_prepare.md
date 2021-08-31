@@ -4,10 +4,10 @@
 
 This simple tutorial has introductory purpose, it doesn't teach you each and every dark corner of D compiler but rather shows quick tips on how to achieve something in a series of snippets.
 
-Let's begin by creating the project, assuming you have already installed D compiler and dub tool (usually shipped with compiled) run the following command in terminal to create and initialize the project.
+Let's begin by creating the project, assuming you have already installed D compiler and dub tool (usually shipped with a compiler) run the following command in the terminal to create and initialize the project.
   
 \
-*you can leave everything at default settings, so just hit enter until it is done*
+*you can use default settings, so just hit enter until it is done*
 ```
 dub init (project_name)
 ```
@@ -19,7 +19,7 @@ dub add dmd
 ```
 
 \
-Without further ado let's start with following D file, it's purpose is to ensure that you have working compiler as a library.
+Without further ado let's start with following D file, its purpose is to ensure that you have working compiler as a library.
 
 __app.d__:
 ```d
