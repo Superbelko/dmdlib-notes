@@ -92,7 +92,7 @@ void main(string[] args)
 <a id="aboutsema"></a>
 ### About semantic pass
 
-Running semantic pass expands some language constructs and inject template instantiations, for example UFCS calls got replaced with regular calls - `42.writeln` becomes `writeln(42)`, it also inserts implicit imports like `import object` on top of each module and more. Keep it in mind, you probably don't want to mess up user code with your DMD based tool so any code formatters/style tools wiil likely operate without semantic pass.
+Running semantic pass expands some language constructs and inject template instantiations, for example UFCS calls got replaced with regular calls - `42.writeln` becomes `writeln(42)`, it also inserts implicit imports like `import object` on top of each module and more. Keep it in mind, you probably don't want to mess up user code with your DMD based tool so any code formatters/style tools will likely operate without semantic pass.
 
 Running semantic pass on this code and then prettyPrint it yields over 1k lines of code output.
 
@@ -121,7 +121,7 @@ One of the most important features is ability to format code as text from compil
 
 Things to be aware of:
 - doesn't preserve any formatting
-- ouput differs before and after semantic pass
+- output is different before and after semantic pass
 
 ```d
     // Let's print our AST back to text again
@@ -151,16 +151,16 @@ From search example we have seen that search method returns common base class - 
 
 Regular cast won't work because of design decisions that favors performance, and because it was ported from C++ codebase.
 
-Instead each base class (`Dsymbol`, `Statement`, `Expression`) provides convenience methods that does such conversions.
+Instead each base class (`Dsymbol`, `Statement`, `Expression`) provides convenience methods that do such conversions.
 
 
 ```d
     // continues on search example ...
 
-    // See myClass is indeed a class declaration type
+    // Check if myClass is indeed a class declaration type
     assert(myClass.isClassDeclaration);
 
-    // It is actually does type casts, not just yes or no
+    // It actually does type casting, not just yes or no
     if (ClassDeclaration decl = myClass.isClassDeclaration)
     {
         writefln("class '%s', derived from '%s'", decl, decl.baseClass);
@@ -214,13 +214,13 @@ Suppose we have a module **test.d** where we want to add new struct named MyStru
     import dmd.arraytypes; // Dsymbols
 
     // Define a location used in diagnostic messages
-    // NOTE: DMD internally uses "Loc.initial" for generated entries to exclude them from code coverate reports
+    // NOTE: DMD internally uses "Loc.initial" for generated entries to exclude them from code coverage reports
     auto newLoc = Loc("test.d",0,0); 
 
     // Create struct declaration named 'MyStruct'
     auto myStructDecl = new StructDeclaration(newLoc, Identifier.idPool("MyStruct"), false);
 
-    // Add empty members list, otherwise it will be printed as forward decl
+    // Add empty members list, otherwise it will be printed as a forward decl
     myStructDecl.members = new Dsymbols();
 
     // Add to the module
@@ -311,7 +311,7 @@ Unfortunatelly this will not work without semantic pass so we have to deal with 
 <a id="symbolcomments"></a>
 ### Reading comments
 
-Not at this moment, there is no way to control whether to read comments or not using standard `parseModule()` function.
+At the moment, there is no way to control whether to read comments or not using standard `parseModule()` function.
 
 If you are going to copy-paste `parseModule()` and turn on comment parsing you will be suprised as it only reads documentation comments starting with `///` or `/+`
 
